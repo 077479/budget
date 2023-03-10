@@ -4,6 +4,7 @@ import threading
 def main():
     src.utility.set_db_location()
     src.utility.set_querry_location()
+    src.utility.setup_db()
 
     try:
         src.config.value_set("MAINTENANCE", "thread_running", "yes")

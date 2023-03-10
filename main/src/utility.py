@@ -101,3 +101,10 @@ def lock_set(lock_state):
 
 def lock():
     return data.globals.lock
+
+def setup_db():
+    if not (pathlib.Path(__file__).parents[1] / "data/budget.db").exists():
+        src.db.make_querry("balance_create")
+        src.db.make_querry("spare_create")
+        src.db.make_querry("chargeBalance_create")
+        src.db.make_querry("chargeSpare_create")
