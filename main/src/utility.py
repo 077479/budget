@@ -103,8 +103,19 @@ def lock():
     return data.globals.lock
 
 def setup_db():
+    date = datetime.datetime.now().timestamp()
+
     if not (pathlib.Path(__file__).parents[1] / "data/budget.db").exists():
         src.db.make_querry("balance_create")
         src.db.make_querry("spare_create")
         src.db.make_querry("chargeBalance_create")
         src.db.make_querry("chargeSpare_create")
+    
+    if not src.db.make_querry("balance_get_last"):        
+        week_amount = src.config.value_get("MONEY", "week_amount")
+        src.db.make_querry("balance_add", (date, week_amount))
+    
+    if not src.db.make_querry("spare_get_last"):
+        spare_amount = src.config.value_get("MONEY", "spare_amount")
+        src.db.make_querry("spare_add", (date, spare_amount))
+
