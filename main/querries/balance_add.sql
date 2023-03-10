@@ -1,0 +1,1 @@
+INSERT INTO Balance (Balance_date, Balance_value) VALUES (?, ?);

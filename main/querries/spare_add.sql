@@ -1,0 +1,1 @@
+INSERT INTO Spare (Spare_date, Spare_value) VALUES (?, ?);

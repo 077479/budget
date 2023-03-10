@@ -1,0 +1,1 @@
+INSERT INTO ChargeBalance (ChargeBalance_date, ChargeBalance_value, balance_id) VALUES (?, ?, ?);

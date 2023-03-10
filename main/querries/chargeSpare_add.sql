@@ -1,0 +1,1 @@
+INSERT INTO ChargeSpare (ChargeSpare_date, ChargeSpare_value, Spare_id) VALUES (?, ?, ?);

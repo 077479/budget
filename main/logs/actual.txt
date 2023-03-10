@@ -1,0 +1,78 @@
+
+#### -------------------------------------- ####
+#### -------- 10.03.2023 14:28:09 --------- ####
+#### -------------------------------------- ####
+
+
+	starting maintenance thread
+
+#### -------------------------------------- ####
+#### -------- 10.03.2023 14:29:29 --------- ####
+#### -------------------------------------- ####
+
+
+	starting maintenance thread
+
+#### -------------------------------------- ####
+#### -------- 10.03.2023 14:29:46 --------- ####
+#### -------------------------------------- ####
+
+
+	starting maintenance thread
+
+	connecting the event listener to the chat with telethon
+
+#### -------------------------------------- ####
+#### -------- 10.03.2023 14:29:50 --------- ####
+#### -------------------------------------- ####
+
+
+	message gathered and forwarded, msg: msg
+
+	'message.parse_message', message_obj: new_message:
+		message: msg
+		date: 1678454990
+		is_expense: False
+		is_saving_expense: False
+		value_separator: None
+		expense_value: None
+		command: msg
+
+	'commands.msg: getting out the standard msg'
+
+	clearing chat and sending msg:
+
+	savings: 115.00
+	balance: 140.00
+	for help type 'help'
+
+#### -------------------------------------- ####
+#### -------- 10.03.2023 14:31:09 --------- ####
+#### -------------------------------------- ####
+
+
+	message gathered and forwarded, msg: stop
+
+	'message.parse_message', message_obj: new_message:
+		message: stop
+		date: 1678455069
+		is_expense: False
+		is_saving_expense: False
+		value_separator: None
+		expense_value: None
+		command: stop
+
+	stopping meintenance_thread and client
+
+	clearing chat and sending msg:
+
+	savings: 115.00
+	balance: 140.00
+	for help type 'help'
+
+#### -------------------------------------- ####
+#### -------- 10.03.2023 14:31:09 --------- ####
+#### -------------------------------------- ####
+
+
+	disconnecting the event listener

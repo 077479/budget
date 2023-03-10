@@ -1,0 +1,1 @@
+SELECT * FROM Balance WHERE Balance_id = ?;

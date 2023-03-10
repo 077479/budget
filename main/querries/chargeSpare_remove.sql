@@ -1,0 +1,1 @@
+DELETE FROM ChargeSpare WHERE ChargeSpare_id = ?;

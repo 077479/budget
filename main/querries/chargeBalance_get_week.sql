@@ -1,0 +1,1 @@
+SELECT * FROM ChargeBalance WHERE ChargeBalance_date BETWEEN ? AND ?;

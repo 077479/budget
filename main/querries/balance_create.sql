@@ -1,0 +1,5 @@
+CREATE TABLE Balance (
+    Balance_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Balance_date INTEGER NOT NULL,
+    Balance_value INTEGER NOT NULL
+);

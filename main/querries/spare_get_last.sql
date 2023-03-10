@@ -1,0 +1,1 @@
+SELECT * FROM Spare ORDER BY Spare_id DESC LIMIT 1;

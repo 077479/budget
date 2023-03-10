@@ -1,0 +1,1 @@
+SELECT * FROM Spare WHERE Spare_id = ?;

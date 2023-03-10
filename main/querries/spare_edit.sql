@@ -1,0 +1,1 @@
+UPDATE Spare SET Spare_value = ? WHERE Spare_id = ?;

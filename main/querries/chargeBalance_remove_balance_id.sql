@@ -1,0 +1,1 @@
+DELETE FROM ChargeBalance WHERE Balance_id = ?;

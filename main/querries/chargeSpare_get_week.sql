@@ -1,0 +1,1 @@
+SELECT * FROM ChargeSpare WHERE ChargeSpare_date BETWEEN ? AND ?;

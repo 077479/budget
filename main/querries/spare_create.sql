@@ -1,0 +1,5 @@
+CREATE TABLE Spare (
+    Spare_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Spare_date INTEGER NOT NULL,
+    Spare_value INTEGER NOT NULL
+)

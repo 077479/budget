@@ -1,0 +1,1 @@
+SELECT * FROM ChargeSpare ORDER BY ChargeSpare_id DESC LIMIT 1;
