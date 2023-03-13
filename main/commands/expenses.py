@@ -16,7 +16,7 @@ def run(message_obj):
     try:
 
         # [(id, date, value)]
-        actual_spare = src.db.make_querry("Spare_get_last")[0]        
+        actual_spare = src.db.make_querry("spare_get_last")[0]        
 
         src.utility.log_it(f"'commands.expenses': actual_spare: {str(actual_spare)}")
         src.utility.log_it(f"making querry: 'spare_edit' and 'chargeSpare_add'")
