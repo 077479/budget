@@ -1,6 +1,7 @@
 import src.message, src.config, src.utility
 import pathlib, asyncio, time
 from telethon import TelegramClient, events
+from telethon.errors import ConnectionError
 
 api_id = int(src.config.value_get("TELAUTH", "api_id"))
 api_hash = src.config.value_get("TELAUTH", "api_hash")
@@ -75,5 +76,14 @@ def run():
     src.utility.log_it("connecting the event listener to the chat with telethon")
     src.utility.log_write()
 
-    client.start()
-    client.run_until_disconnected()
+    try:
+        client.start()
+        client.run_until_disconnected()
+
+    except ConnectionError as e:
+        src.utility.log_it(f"During the listening for new messages an Exception occured: {e}")
+        src.utility.log_it(f"waiting 5 seconds and try to reconnect")
+        src.utility.log_write()
+
+        time.sleep(5)
+        run()
