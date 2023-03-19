@@ -1,7 +1,6 @@
 import src.message, src.config, src.utility
 import pathlib, asyncio, time
 from telethon import TelegramClient, events
-from telethon.errors import ConnectionError
 
 api_id = int(src.config.value_get("TELAUTH", "api_id"))
 api_hash = src.config.value_get("TELAUTH", "api_hash")
