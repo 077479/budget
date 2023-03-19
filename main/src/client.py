@@ -80,7 +80,7 @@ def run():
         client.start()
         client.run_until_disconnected()
 
-    except ConnectionError as e:
+    except Exception as e:
         src.utility.log_it(f"During the listening for new messages an Exception occured: {e}")
         src.utility.log_it(f"waiting 5 seconds and try to reconnect")
         src.utility.log_write()
