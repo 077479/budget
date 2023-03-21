@@ -11,27 +11,41 @@ def maintenance_thread():
 
         current_time = time.localtime()
 
-        if current_time.tm_wday == 0 and current_time.tm_hour == 0 and current_time.tm_min == 0 :
+        if current_time.tm_wday == 0 and current_time.tm_hour == 0 and current_time.tm_min == 0:
             log_it("maintenance_thread here: adding weekly amount to balance")
             log_write()
+
+            try:
+                # [(id, date, value)]
+                actual_balance = src.db.make_querry("balance_get_last")[0]
+                new_balance = actual_balance[2] + int(src.config.value_get("MONEY", "week_amount"))
+                # date, value
+                now = datetime.datetime.now().timestamp()
+                src.db.make_querry("balance_add", (now, new_balance))
+
+            except Exception as e:
+                log_it(f"during adding the new weekly balance through the maintenance thread an exception occured\n{e}")
+                log_it(f"shutting down maintenance thread for further inspection")
+                log_write()
+                src.config.value_set("MAINTENANCE", "thread_running", "no")
             
-            # [(id, date, value)]
-            actual_balance = src.db.make_querry("balance_get_last")[0]
-            new_balance = actual_balance[2] + src.config.value_get("MONEY", "week_amount")
-            # date, value
-            now = datetime.datetime.now().timestamp()
-            src.db.make_querry("balance_add", (now, new_balance))            
-            
-        if current_time.tm_mday == 1 and current_time.tm_hour == 0 and current_time.tm_min == 0 :
+        if current_time.tm_mday == 1 and current_time.tm_hour == 0 and current_time.tm_min == 0:
             log_it("maintenance_thread here: adding monthly amount to spare")
             log_write()
 
-            # [(id, date, value)]
-            actual_spare = src.db.make_querry("spare_get_last")[0]
-            new_spare = actual_spare[2] + src.config.value_get("MONEY", "spare_amount")
-            # date, value
-            now = datetime.datetime.now().timestamp()
-            src.db.make_querry("spare_add", (now, new_spare))
+            try:
+                # [(id, date, value)]
+                actual_spare = src.db.make_querry("spare_get_last")[0]
+                new_spare = actual_spare[2] + int(src.config.value_get("MONEY", "spare_amount"))
+                # date, value
+                now = datetime.datetime.now().timestamp()
+                src.db.make_querry("spare_add", (now, new_spare))
+
+            except Exception as e:
+                log_it(f"during adding the new weekly balance through the maintenance thread an exception occured\n{e}")
+                log_it(f"shutting down maintenance thread for further inspection")
+                log_write()
+                src.config.value_set("MAINTENANCE", "thread_running", "no")
         
         if current_time.tm_hour == 0 and current_time.tm_min == 0:
             log_it("maintenance_thread here: just casually reporting activeness")
@@ -39,13 +53,16 @@ def maintenance_thread():
 
         time.sleep(60)
 
+
 def set_db_location():
     db_path = str(pathlib.Path(__file__).parents[1] / "data/budget.db")
     src.config.value_set("MAINTENANCE", "DB_location", db_path)
 
+
 def set_querry_location():
     location = str(pathlib.Path(__file__).parents[1] / "querries")
     src.config.value_set("MAINTENANCE", "querry_location", location)
+
 
 def message_std():
     #[(id, date, value)]
@@ -62,6 +79,7 @@ def message_std():
 
     src.client.clear_chat()
     src.client.send_message(msg)
+
 
 def message_custom(custom_msg):
     
@@ -88,6 +106,7 @@ def log_it(msg):
     msg = msg.replace("\n", "\n\t")
     data.globals.log.add(f"{msg}\n")
 
+
 def log_write():
     if data.globals.log:
         data.globals.log.write()
@@ -96,11 +115,14 @@ def log_write():
         data.globals.log.add("maintenance was called to write the log but there is no log object")
         data.globals.log.write()
 
+
 def lock_set(lock_state):
     data.globals.lock = lock_state
 
+
 def lock():
     return data.globals.lock
+
 
 def setup_db():
     date = datetime.datetime.now().timestamp()

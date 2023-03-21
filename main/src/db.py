@@ -39,7 +39,7 @@ querry_location = src.config.value_get("MAINTENANCE", "querry_location")
 
 def _get_querry_path(querry_name: str) -> pathlib.Path:
     querry_path = pathlib.Path(querry_location) / f"{querry_name}.sql"
-    if not querry_path.exists(): raise FileNotFoundError(f"file {str(querry_path)} was not found")
+    if not querry_path.exists(): raise FileNotFoundError("querry filedoes not exist")
     return querry_path
 
 def _get_querry_file_content(querry_path: pathlib.Path) -> str:
